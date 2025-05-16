@@ -15,15 +15,17 @@ execute:
 ```{r libraries-and-data}
 library(tidyverse) # general use
 library(janitor) # cleaning data frames
-library(here) # file/folder organization
+library(here) # file/folder organization, the code and the data
 library(readxl) # reading .xlsx files
 library(ggeffects) # generating model predictions
 library(gtsummary) # generating summary tables for models
 
 # abalone data from Hamilton et al. 2022
+# telling r to look into the data folder for the abalone data file
 abalone <- read_xlsx(here("data", "Abalone IMTA_growth and pH.xlsx"))
 
 # Sonadora temperature data from Alonzo, A. 2024
+# telling r to look into the data folder for the tmeperature data file
 sonadora <- read_csv(here("data", "Temp_SonadoraGradient_Daily.csv"))
 ```
 
@@ -65,8 +67,11 @@ ggplot(data = abalone_clean,
   # first layer: points representing abalones
   geom_point(size = 4,
              stroke = 1,
-             fill = "firebrick4",
-             shape = 21)
+             fill = "#360658",
+             shape = 21) +
+  theme_minimal() +
+  labs(x = "pH", y= "Change in shall surface area per day")
+
 ```
 
 ## d. Abalone model
